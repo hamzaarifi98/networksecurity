@@ -6,5 +6,7 @@ pymongo
 certifi 
 scikit-learn
 seaborn
+pymongo[srv]
+
 
 #-e .
