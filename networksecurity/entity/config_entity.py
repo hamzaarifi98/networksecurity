@@ -52,8 +52,6 @@ class DataValidationConfig:
         self.valid_test_file_path: str = os.path.join(self.valid_dir, training_pipeline.TEST_FILE_NAME)
         self.invalid_train_file_path: str = os.path.join(self.invalid_dir, training_pipeline.TRAIN_FILE_NAME)
         self.invalid_test_file_path: str = os.path.join(self.invalid_dir, training_pipeline.TEST_FILE_NAME)
-        # FIX: drift_report_dir must be defined BEFORE drift_report_file_path
-        # FIX: filename removed from drift_report_dir path
         self.drift_report_dir: str = os.path.join(
             self.data_validation_dir,
             training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR
@@ -62,3 +60,13 @@ class DataValidationConfig:
             self.drift_report_dir,
             training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME
         )
+
+class DataTransformationConfig:
+     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.data_transformation_dir: str = os.path.join( training_pipeline_config.artifact_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME )
+        self.transformed_train_file_path: str = os.path.join( self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,
+            training_pipeline.TRAIN_FILE_NAME.replace("csv", "npy"),)
+        self.transformed_test_file_path: str = os.path.join(self.data_transformation_dir,  training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,
+            training_pipeline.TEST_FILE_NAME.replace("csv", "npy"), )
+        self.transformed_object_file_path: str = os.path.join( self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
+            training_pipeline.PREPROCESSING_OBJECT_FILE_NAME,)
