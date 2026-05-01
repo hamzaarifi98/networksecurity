@@ -8,6 +8,7 @@ scikit-learn
 seaborn
 pymongo[srv]
 scikit-learn
-
+dill
+pyaml
 
 #-e .

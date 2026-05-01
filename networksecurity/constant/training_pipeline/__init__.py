@@ -46,3 +46,4 @@ DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_report"
 DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
 
 
+SCHEMA_FILE_PATH: str = os.path.join("data_schema", "schema.yaml")
