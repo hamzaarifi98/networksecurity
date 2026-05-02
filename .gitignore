@@ -1,2 +1,17 @@
 venv
 .env
+Artifacts
+__pycache__
+.ipynb_checkpoints
+*.pyc
+*.pkl
+*.log
+*.csv
+*.xlsx
+*.h5
+*.hdf5
+*.json
+*.yaml  
+mlruns
+mlflow.log
+logs
