@@ -10,5 +10,7 @@ pymongo[srv]
 scikit-learn
 dill
 pyaml
+mlflow
+dagshub
 
 #-e .

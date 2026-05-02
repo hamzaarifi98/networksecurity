@@ -9,6 +9,9 @@ from networksecurity.entity.config_entity import DataTransformationConfig
 import sys
 import os
 
+from networksecurity.components.model_trainer import ModelTrainer
+from networksecurity.entity.config_entity import ModelTrainerConfig
+
 if __name__=="__main__":
     try:
 
@@ -19,18 +22,29 @@ if __name__=="__main__":
         dataingestionartifact=data_ingestion.initiate_data_ingestion()
         logging.info("Completed the data ingestion component")
         print(dataingestionartifact)
+        
         data_validation_config = DataValidationConfig(trainingpipelineconfig)
         data_validation=DataValidation(dataingestionartifact, data_validation_config)
         logging.info("Initiated the data validation component")
         data_validation_artifact =data_validation.initiate_data_validation()
         logging.info("Completed the data validation component")
         print(data_validation_artifact)
+        
         data_transformation_config = DataTransformationConfig(trainingpipelineconfig)
         data_transformation = DataTransformation(data_validation_artifact, data_transformation_config)
         logging.info("Initiated the data transformation component")
+        
         data_transformation_artifact = data_transformation.initiate_data_transformation()
         print(data_transformation_artifact)
         logging.info("Completed the data transformation component")
+
+        logging.info("Model Training sstared")
+        model_trainer_config=ModelTrainerConfig(trainingpipelineconfig)
+        model_trainer=ModelTrainer(model_trainer_config=model_trainer_config,data_transformation_artifact=data_transformation_artifact)
+        model_trainer_artifact=model_trainer.initiate_model_trainer()
+
+        logging.info("Model Training artifact created")
+
     except Exception as e:
         raise NetworkSecurityException(e,sys)
                             
